@@ -1,0 +1,50 @@
+.weather_app {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: aliceblue;
+    padding: 5px 25px 25px 25px;
+    font-family: monospace;
+    border-radius: 15px;
+}
+
+.weather {
+    margin: 10px 0;
+    position: relative;
+    top: 5px;
+    opacity: 0.8;
+}
+
+.icon-element {
+    width: 70px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 25px;
+}
+
+h1 {
+    font-weight: 900;
+    color: #272142;
+    position: relative;
+    left: 18px;
+}
+
+.degrees {
+    font-size: 36px;
+    position: relative;
+    bottom: 17px;
+    right: 15px;
+}
+
+.units {
+    font-size: 16px;
+    position: relative;
+    bottom: 37px;
+    right: 18px;
+}
+
+.addinform {
+    position: relative;
+    bottom: 25px;
+    left: 35px;
+}
