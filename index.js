@@ -13,10 +13,29 @@ function formatDate(timestamp) {
     return `Last updated ${day} ${hours}:${minutes}`
 }
 
+function showInFarenheit() {
+    event.preventDefault();
+    celsiusElement.classList.remove('active');
+    farenheitElement.classList.add('active');
+    let farenheitDegrees = document.querySelector('.degrees');
+    farenheitDegrees.innerHTML = Math.round(celsius * 9 / 5) + 32;
+}
 
+function showInCelsius() {
+    event.preventDefault();
+    let celsiusDegrees = document.querySelector('.degrees');
+    celsiusDegrees.innerHTML = celsius;
+}
+
+let celsiusElement = document.querySelector('#celsius');
+celsiusElement.addEventListener('click', showInCelsius);
+
+let celsius = 32;
+let farenheitElement = document.querySelector('#farenheit');
+farenheitElement.addEventListener('click', showInFarenheit);
 
 function showWeather(response) {
-    console.log(response.data.weather[0].icon)
+    console.log(response.data.name)
     let cityElement = document.querySelector('#cityElement');
     let descriptionElement = document.querySelector('#description-element');
     let humidityElement = document.querySelector('#humidity-element');
@@ -26,7 +45,6 @@ function showWeather(response) {
     iconCode = response.data.weather[0].icon;
     let icon = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
     let iconElement = document.querySelector('.icon-element');
-    iconElement.setAttribute('src', icon);
 
 
 
@@ -34,8 +52,9 @@ function showWeather(response) {
     humidityElement.innerHTML = response.data.main.humidity;
     degreesElement.innerHTML = Math.round(response.data.main.temp);
     windElement.innerHTML = Math.round(response.data.wind.speed);
-    dateElement.innerHTML = formatDate(response.data.dt * 1000);
     descriptionElement.innerHTML = response.data.weather[0].description;
+    dateElement.innerHTML = formatDate(response.data.dt * 1000);
+    iconElement.setAttribute('src', icon);
 
 }
 

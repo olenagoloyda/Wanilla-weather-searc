@@ -41,10 +41,21 @@ h1 {
     position: relative;
     bottom: 37px;
     right: 18px;
+    text-decoration: none;
+}
+
+#celsius,
+#farenheit {
+    text-decoration: none;
 }
 
 .addinform {
     position: relative;
     bottom: 25px;
     left: 35px;
+}
+
+.active {
+    color: black;
+    cursor: default;
 }
