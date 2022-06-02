@@ -13,6 +13,10 @@
 <body>
     <div class="container">
         <div class="weather_app">
+            <form id="search-form">
+                <input type="search" placeholder='Enter a city' id='city-input'>
+                <input type="submit" value="Search" class='search-button'>
+            </form>
             <div class="row my-4">
                 <div class="col-7">
                     <h1 id='cityElement'>New York</h1>
@@ -26,7 +30,7 @@
                     <div class='addinform'>
                         <div> Humidity:<span id='humidity-element'>80</span>%
                         </div>
-                        <div> Wind: <span id='wind-element'>5.14</span>km/h
+                        <div> Wind:<span id='wind-element'>5.14</span>km/h
                         </div>
                     </div>
                 </div>

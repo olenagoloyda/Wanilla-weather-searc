@@ -7,6 +7,26 @@
     border-radius: 15px;
 }
 
+#search-form {
+    display: block;
+    margin: 15px auto;
+}
+
+#city-input {
+    width: 80%;
+    border: 0;
+    padding: 5px;
+    background-color: rgb(255, 255, 234);
+    border-radius: 3px;
+}
+
+.search-button {
+    padding: 5px;
+    background-color: rgb(255, 255, 234);
+    border: 0;
+    border-radius: 3px;
+}
+
 .weather {
     margin: 10px 0;
     position: relative;
