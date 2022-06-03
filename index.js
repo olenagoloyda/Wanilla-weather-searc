@@ -13,6 +13,40 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`
 }
 
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay;
+    console.log(day)
+    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days[day];
+}
+
+
+
+function displayForecast(response) {
+    console.log(response.data.daily[0].dt)
+    let forecastElement = document.querySelector('#forecast');
+    let forecastHTML = `<div class='row'>`;
+    let forecast = response.data.daily;
+    console.log(day)
+    forecast.forEach(function(forecastDay) {
+        forecastHTML =
+            forecastHTML + ` <div class="col-2">
+                        <div class="weather-forecast-day">${formatDay(forecastDay.dt)}</div>
+                        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" width='46'>
+                        <div class="weather-forecast-temperature">
+                            <span class="temperature-max">20</span>
+                            <span class="temperature-min">15</span>
+
+                        </div>
+                    </div>`;
+    })
+    forecastHTML = forecastHTML + `</div>`
+    forecastElement.innerHTML = forecastHTML;
+
+
+}
+
 function showInFarenheit() {
     event.preventDefault();
     celsiusElement.classList.remove('active');
@@ -34,8 +68,13 @@ let celsius = 32;
 let farenheitElement = document.querySelector('#farenheit');
 farenheitElement.addEventListener('click', showInFarenheit);
 
+function getForecast(coord) {
+    let apiKey = '52548afd3d9067b1c2e40e02f67065f2';
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayForecast)
+}
+
 function showWeather(response) {
-    console.log(response.data)
     let cityElement = document.querySelector('#cityElement');
     let descriptionElement = document.querySelector('#description-element');
     let humidityElement = document.querySelector('#humidity-element');
@@ -53,6 +92,7 @@ function showWeather(response) {
     descriptionElement.innerHTML = response.data.weather[0].description;
     dateElement.innerHTML = formatDate(response.data.dt * 1000);
     iconElement.setAttribute('src', icon);
+    getForecast(response.data.coord)
 }
 
 function searchWeather(city) {
@@ -71,5 +111,7 @@ function scanCity(event) {
 }
 
 
+
+searchWeather('new york');
 let searchForm = document.querySelector('#search-form');
 searchForm.addEventListener('submit', scanCity)
