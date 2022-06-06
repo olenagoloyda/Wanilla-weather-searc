@@ -15,11 +15,12 @@ function formatDate(timestamp) {
 
 function formatDay(timestamp) {
     let date = new Date(timestamp * 1000);
-    let day = date.getDay;
-    console.log(day)
+    let day = date.getDay();
     let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    console.log(days[day])
     return days[day];
 }
+
 
 
 
@@ -29,9 +30,10 @@ function displayForecast(response) {
     let forecastHTML = `<div class='row'>`;
     let forecast = response.data.daily;
     console.log(day)
-    forecast.forEach(function(forecastDay) {
-        forecastHTML =
-            forecastHTML + ` <div class="col-2">
+    forecast.forEach(function(forecastDay, index) {
+        if (index < 7 && index > 0) {
+            forecastHTML =
+                forecastHTML + ` <div class="col-2">
                         <div class="weather-forecast-day">${formatDay(forecastDay.dt)}</div>
                         <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" width='46'>
                         <div class="weather-forecast-temperature">
@@ -40,12 +42,13 @@ function displayForecast(response) {
 
                         </div>
                     </div>`;
-    })
+        }
+    });
     forecastHTML = forecastHTML + `</div>`
     forecastElement.innerHTML = forecastHTML;
-
-
 }
+
+
 
 function showInFarenheit() {
     event.preventDefault();
