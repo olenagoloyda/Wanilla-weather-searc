@@ -71,9 +71,9 @@ h1 {
 
 .addinform {
     position: relative;
-    bottom: 25px;
+    top: 12px;
     left: 35px;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .active {
